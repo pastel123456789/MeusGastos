@@ -19,6 +19,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import br.unasp.meusgastos.model.Categoria
+import br.unasp.meusgastos.model.Gasto
+import br.unasp.meusgastos.model.GastoRepositoryDemo
 import br.unasp.meusgastos.viewmodel.GastosViewModel
 
 /**
@@ -90,4 +92,40 @@ fun FiltroCategorias(
 @Composable
 private fun FiltroPreview() {
     FiltroCategorias(selecionada = Categoria.LAZER, aoFiltrar = {}, modifier = Modifier.padding(16.dp))
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun ResumoTotalPreview() {
+    ResumoTotal(total = 201.70, quantidade = 4)
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun LinhaGastoPreview() {
+    LinhaGasto(
+        gasto = Gasto(1, "Almoço no bandejão", 18.50, Categoria.ALIMENTACAO),
+        aoRemover = {}
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun FormularioComErroPreview() {
+    FormularioGasto(
+        descricao = "Café",
+        valorTexto = "abc",
+        categoria = Categoria.ALIMENTACAO,
+        erro = "O valor precisa ser um número",
+        aoDigitarDescricao = {},
+        aoDigitarValor = {},
+        aoSelecionarCategoria = {},
+        aoAdicionar = {}
+    )
+}
+
+@Preview(showBackground = true, heightDp = 780)
+@Composable
+private fun TelaGastosPreview() {
+    TelaGastos(vm = GastosViewModel(GastoRepositoryDemo()))
 }
